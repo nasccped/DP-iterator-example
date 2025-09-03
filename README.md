@@ -47,6 +47,61 @@ _image 1: orders repr_
 >   to the _"most-right"_ by passing through the current node _(left
 >   leaf - current node - right leaf schema)**(sorted)**_
 
+## Cloning, compiling and running
+
+To clone the project you can:
+
+```sh
+# clone using git
+git clone https://github.com/nasccped/DP-iterator-example
+# remove git folder (works for bash based terminals, only)
+rm -rf DP-iterator-example/.git/
+# goto dir
+cd DP-iterator-example
+```
+
+### Compiling
+
+Since this project was built under the kojamp[^kojamp] project
+manager, you can use it to handle the project, or:
+
+- compile using a bash terminal (Linux):
+```sh
+javac $(find src -type f -name **.java) -d out
+```
+- compile using a powershell terminal (Windows):
+```powershell
+javac (Get-ChildItem -Recurse -Path src -Filter *.java | ForEach-Object { $_.FullName }) -d out
+```
+
+Finally, you can execute the program by running:
+```sh
+java --class-path out IteratorExample
+```
+
+> [!IMPORTANT]
+>
+> Make sure to uncomment the code that _"runs"_ the stuff:
+>
+> ```java
+> public static void main(String[] args) {
+>     // a lot of code...
+>     String sourcePath = "src/IteratorExample.java";
+>     Printer.echoln(
+>         "All the important calls are at `"
+>         + yellow(sourcePath) + "`'s main function.\n"
+>         + "You should uncomment the code to see the impl working...\n");
+>     // uncomment the following code (~line 70)
+>     // inOrderExample();
+>     // preOrderExample();
+>     // postOrderExample();
+>   }
+> ```
+
 [^design-patterns-book]: _Design Patters: Elements of Reusable Object-Oriented Software_
   is a software engineering book that describes software design
   patterns. You can find it at [amazon website](https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612).
+
+[^kojamp]: Kojamp is a Java and Kotlin project manager I built. You
+  can find more info in it's
+  [official repository](https://github.com/nasccped)
