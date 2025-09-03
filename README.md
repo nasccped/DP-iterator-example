@@ -24,6 +24,14 @@ provides three common ways to iterate over it's data:
 3. **In-Order:** when we look to the left node, then, the current and
    right one, respectively.
 
+<div align="center">
+
+![image-01: orders repr](./images/orders-image.jpg)
+
+_image 1: orders repr_
+
+</div>
+
 [^design-patterns-book]: _Design Patters: Elements of Reusable Object-Oriented Software_
   is a software engineering book that describes software design
   patterns. You can find it at [amazon website](https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612).
