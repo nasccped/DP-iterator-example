@@ -32,6 +32,21 @@ _image 1: orders repr_
 
 </div>
 
+> [!TIP]
+>
+> Keep in mind that all ordering traversals works in a recursive way,
+> so:
+>
+> - `Pre-Order` will start the iteration from the current node and
+>   then, navigates left to right in our tree _(trees first, leafs
+>   last)**(unsorted)**_
+> - `Post-Order` will start the iteration from the left node and
+>   then, goes to right in our tree, but leaving the current node for
+>   last _(leafs first, trees last)**(unsorted)**_
+> - `In-Order` will start from the _"most-left"_ subtree and navigate
+>   to the _"most-right"_ by passing through the current node _(left
+>   leaf - current node - right leaf schema)**(sorted)**_
+
 [^design-patterns-book]: _Design Patters: Elements of Reusable Object-Oriented Software_
   is a software engineering book that describes software design
   patterns. You can find it at [amazon website](https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612).
