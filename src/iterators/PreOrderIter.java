@@ -9,41 +9,16 @@ import java.util.Queue;
  * Binary Tree pre order traversal (current-node =>
  * node-left<recursive> => node-right<recursive>) implementation.
  */
-public class PreOrderIter<T extends Comparable<T>> implements DPIterator<T> {
+public class PreOrderIter<T extends Comparable<T>>
+extends AbstractTreeIterator<T> {
 
-    private BinaryNode<T> origin;
-    private Queue<T> queue;
-    private T current;
-
-    public PreOrderIter(BinaryTree<T> bt) {
-        this.origin = bt.getRoot();
-        this.queue = new LinkedList<T>();
-        this.current = null;
-    }
+    public PreOrderIter(BinaryTree<T> bt) { super(bt); }
 
     @Override
-    public void first() {
-        if (!queue.isEmpty()) queue = new LinkedList<T>();
-        recursiveQueuePush(queue, origin);
-        next();
-    }
-
-    private static <U extends Comparable<U>>
-    void recursiveQueuePush(Queue<U> queue, BinaryNode<U> node) {
+    protected void populateQueue(BinaryNode<T> node) {
         if (node == null) return;
         queue.add(node.getCurrent());
-        recursiveQueuePush(queue, node.getLeftNode());
-        recursiveQueuePush(queue, node.getRightNode());
+        populateQueue(node.getLeftNode());
+        populateQueue(node.getRightNode());
     }
-
-    @Override
-    public void next() {
-        current = queue.poll();
-    }
-
-    @Override
-    public boolean isDone() { return queue.isEmpty() && current == null; }
-
-    @Override
-    public T getCurrentItem() { return current; }
 }
