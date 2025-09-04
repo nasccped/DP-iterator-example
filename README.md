@@ -18,18 +18,32 @@ ways to iterate over Objects that holds a collection of elements
 (`List`, `Set`, `Map`, `...`). I chose a binary tree 'cause it
 provides three common ways to iterate over it's data:
 
-1. **Pre-Order:** when we look to the current node, then, the left
-   and right one, respectively.
-2. **Post-Order:** when we look to the left node, then, the right and
-   current one, respectively.
-3. **In-Order:** when we look to the left node, then, the current and
-   right one, respectively.
+<div align="center" id="image-01">
 
-<div align="center">
-
-![image-01: orders repr](./images/orders-image.jpg)
+<img
+src="./images/orders-image.jpg"
+alt="image 1: orders repr"
+height="300px">
 
 _image 1: orders repr_
+
+<table>
+  <tr>
+    <th>Pre-Order</th>
+    <td>when we look to the current node, then, the left and right
+    one, respectively</td>
+  </tr>
+  <tr>
+    <th>Post-Order</th>
+    <td>when we look to the left node, then, the right and current
+    one, respectively</td>
+  </tr>
+  <tr>
+    <th>In-Order</th>
+    <td>when we look to the left node, then, the current and right
+    one, respectively</td>
+  </tr>
+</table>
 
 </div>
 
