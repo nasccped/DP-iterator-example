@@ -139,4 +139,4 @@ interface
 
 [^kojamp]: Kojamp is a Java and Kotlin project manager I built. You
   can find more info in it's
-  [official repository](https://github.com/nasccped)
+  [official repository](https://github.com/nasccped/kojamp)
