@@ -25,7 +25,7 @@ implements DPIterator<T> {
 
     @Override
     public void first() {
-        if (!queue.isEmpty()) queue = new LinkedList<T>();
+        if (!queue.isEmpty()) queue.clear();
         populateQueue(origin);
         next();
     }
