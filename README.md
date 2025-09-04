@@ -13,7 +13,7 @@ piece located at _Design Patters: Elements of Reusable Object-Oriented Software_
 _(page 66/358)_.
 
 
-The implementation is an interface-based contract that offers usefull
+The implementation is an interface-based contract that offers useful
 ways to iterate over Objects that holds a collection of elements
 (`List`, `Set`, `Map`, `...`). I chose a binary tree 'cause it
 provides three common ways to iterate over it's data:
@@ -123,7 +123,7 @@ built in one?
 
 ### The `Iterator` reference
 
-Even though the Java's iterator provide usefull features, my
+Even though the Java's iterator provide useful features, my
 interface is based on this C++ code sample (from the _Design
 Patterns_ book):
 
