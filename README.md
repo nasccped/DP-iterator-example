@@ -141,6 +141,141 @@ interface
 > feature, but the concept itself. (**interface** as Java's both
 > `interface` and `abstract class`).
 
+## Iterator implementation
+
+The iterator object works like the
+[previous code sample](#the-iterator-reference). By using a queue
+data structure (`LinkedList` in this scenario), we can
+**initialize** and gradually removes the items to _"go next"_ with
+our iterator.
+
+Since the `First`, `IsDone`, `Next` and `CurrentItem` will works all
+the same independently of the traversal kind, we can build an
+`abstract class`[^abstract-class] to implement all the
+_default methods_ and avoid code repetition:
+
+```java
+/**
+ * Interface file tree:
+ * interface-package ┐
+ *                   ├ Interface.java
+ *                   ├ AbstractClass.java
+ *                   └ concrete classes ...
+ */
+
+// AbstractClass.java
+abstract class Abstract<Generic> implements Interface<Generic> {
+    // inner properties...
+    // interface default implementations...
+}
+```
+
+### Properties
+
+Analyzing the code reference, we can define a `BinaryTree` node as
+**origin** (init the iterator process from this object), a `Queue`
+that holds the elements as **"next"** and a `Generic type` variable
+that holds the **current** object:
+
+```java
+abstract class Abstract<Generic> implements Interface<Generic> {
+    private BinaryNode<Generic> origin;
+    protected Queue<Generic> queue;
+    private Generic current;
+}
+```
+
+### Concrete methods
+
+Here, we can implement all the methods that will works the same for
+any tree traversal!
+
+#### `First` method
+
+Since our iterator is a queue based object, we can initialize it by
+populating our queue and moving to the next item:
+
+```java
+@Override
+public void first() {
+    if (!queue.isEmpty()) queue.clear();
+    populateQueue(origin);
+    next();
+}
+```
+
+> [!NOTE]
+>
+> `Binary Tree` is a recursive data structure, so, we need to
+> populate our queue recursively. Keep in mind that the populate
+> method must differ from a traversal kind to another (the
+> `populateQueue` method should be an
+> [abstract method](#abstract-methods)).
+
+#### `Next` method
+
+Points the `current` variable to the next object in our iterator queue:
+
+```java
+@Override
+public void next() { current = queue.poll(); }
+```
+
+I'm using `poll` instead of `remove` 'cause the `current` variable
+should be `null` to indicates the iterator ends.
+
+#### `IsDone` method
+
+Returns the iteration is done by checking the queue (no `Object`
+remaining) and the `current` variable (`null` obj):
+
+```java
+@Override
+public boolean isDone() { return queue.isEmpty() && current == null; }
+```
+
+#### `CurrentItem` method
+
+Returns the `Object` being held by the `current` variable:
+
+```java
+@Override
+public Generic getCurrentItem() { return current; }
+```
+
+### Abstract methods
+
+Finally, the queue populate method is different for each traversal
+kind, so it should be implemented only in the
+`concrete class`[^concrete-class].
+
+Let's take the [`In-Order`](#image-01) traversal as example:
+
+1. **base case:** is where our queue pushing stops. We'll never push a
+   `null` object to our queue. That's our base case!
+2. **node order:** `in-order` traversal works **"most left to most
+   right"** (sorted). We should push the left node first, then, the
+   current node, and finally, the right one:
+
+```java
+public class InOrderIter<T extends Comparable<T>>
+extends Abstract<T> {
+    // receives a binary tree node (allow recursion)
+    @Override
+    protected void populateQueue(BinaryNode<T> node) {
+        // if non valid object, stops recursion
+        if (node == null) return;
+        populateQueue(node.getLeftNode());  // go left node recursion
+        queue.add(node.getCurrent());       // insert current node value
+        populateQueue(node.getRightNode()); // go right node recursion
+    }
+}
+```
+
+The `populateQueue` implement will be different for each child
+class[^child-class]. They all works the same but differ in object
+pushing order!
+
 [^design-patterns-book]: _Design Patters: Elements of Reusable Object-Oriented Software_
   is a software engineering book that describes software design
   patterns. You can find it at [amazon website](https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612).
@@ -148,3 +283,16 @@ interface
 [^kojamp]: Kojamp is a Java and Kotlin project manager I built. You
   can find more info on it's
   [official repository](https://github.com/nasccped/kojamp)
+
+[^abstract-class]: `abstract class` serves as a blueprint for other
+  classes and cannot be instantiated directly, meaning you cannot
+  create objects of an abstract class. More info at
+  [Oracle website](https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html).
+
+[^concrete-class]: Concrete class it's a class that is fully
+  implemented and can be instantiated, unlike an abstract class or
+  interface.
+
+[^child-class]: Child class, also known as a subclass or derived
+  class, is a new class that inherits properties and methods from an
+  existing class, called the parent class (or base class).
