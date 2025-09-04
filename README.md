@@ -146,5 +146,5 @@ interface
   patterns. You can find it at [amazon website](https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612).
 
 [^kojamp]: Kojamp is a Java and Kotlin project manager I built. You
-  can find more info in it's
+  can find more info on it's
   [official repository](https://github.com/nasccped/kojamp)
