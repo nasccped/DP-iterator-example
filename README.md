@@ -98,6 +98,41 @@ java --class-path out IteratorExample
 >   }
 > ```
 
+## Why not use the Java's built-in `Iterator` interface?
+
+If you already have experience with Java development, you probably
+know that the JDK provides an
+[`Iterator`](https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html)
+utility. So, why did I create a new interface instead of using the
+built in one?
+
+### The `Iterator` reference
+
+Even though the Java's iterator provide usefull features, my
+interface is based on this C++ code sample (from the _Design
+Patterns_ book):
+
+```cpp
+Glyph* g;
+Iterator<Glyph*>* i = g->CreateIterator();
+
+for (i->First(); !i->IsDone(); i->Next()) {
+    Glyph* child = i->CurrentItem();
+
+    // do something with current child
+}
+```
+
+Key points (apparently):
+- `i->First()` initializes the iterator
+- `i->IsDone()` checks if the iterator is done
+- `i->Next()` moves to the next item in our iterator
+- `i->CurrentItem()` returns the current item in our iterator
+
+So, I've decided to use this features to build my own iterator
+interface
+([`src/iterators/DPIterator.java`](src/iterators/DPIterator.java)).
+
 [^design-patterns-book]: _Design Patters: Elements of Reusable Object-Oriented Software_
   is a software engineering book that describes software design
   patterns. You can find it at [amazon website](https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612).
