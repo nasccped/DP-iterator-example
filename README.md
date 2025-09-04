@@ -12,6 +12,7 @@ This repository is an attempt to implement the iterator pattern code
 piece located at _Design Patters: Elements of Reusable Object-Oriented Software_[^design-patterns-book]
 _(page 66/358)_.
 
+
 The implementation is an interface-based contract that offers usefull
 ways to iterate over Objects that holds a collection of elements
 (`List`, `Set`, `Map`, `...`). I chose a binary tree 'cause it
@@ -132,6 +133,13 @@ Key points (apparently):
 So, I've decided to use this features to build my own iterator
 interface
 ([`src/iterators/DPIterator.java`](src/iterators/DPIterator.java)).
+
+> [!NOTE]
+>
+> I mostly mention the interface, but abstract class concept is also
+> used under this project. Consider _"interface"_ not as the Java's
+> feature, but the concept itself. (**interface** as Java's both
+> `interface` and `abstract class`).
 
 [^design-patterns-book]: _Design Patters: Elements of Reusable Object-Oriented Software_
   is a software engineering book that describes software design
