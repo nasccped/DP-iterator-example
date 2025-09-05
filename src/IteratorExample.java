@@ -113,8 +113,8 @@ public class IteratorExample {
     /** Util for element fast printing */
     private static void printObjectWithPosition(int position, Object o) {
         Printer.echo(yellow(String.format("%d. nth", position)));
-            Printer.echo(" element: ");
-            Printer.echoln(iter.getCurrentItem());
+        Printer.echo(" element: ");
+        Printer.echoln(iter.getCurrentItem());
     }
 
     /** Visual util */
