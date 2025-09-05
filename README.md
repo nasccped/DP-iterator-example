@@ -16,7 +16,8 @@ _(page 66/358)_.
 The implementation is an interface-based contract that offers useful
 ways to iterate over Objects that holds a collection of elements
 (`List`, `Set`, `Map`, `...`). I chose a binary tree 'cause it
-provides three common ways to iterate over it's data:
+provides three common ways to iterate over it's data _(traversal
+ordering)_:
 
 <div align="center" id="image-01">
 
@@ -29,17 +30,17 @@ _image 1: orders repr_
 
 <table>
   <tr>
-    <th>Pre-Order</th>
+    <th>Pre-Order traversal</th>
     <td>when we look to the current node, then, the left and right
     one, respectively</td>
   </tr>
   <tr>
-    <th>Post-Order</th>
+    <th>Post-Order traversal</th>
     <td>when we look to the left node, then, the right and current
     one, respectively</td>
   </tr>
   <tr>
-    <th>In-Order</th>
+    <th>In-Order traversal</th>
     <td>when we look to the left node, then, the current and right
     one, respectively</td>
   </tr>
